@@ -11,6 +11,7 @@ class User < ApplicationRecord
     user_params.merge! auth.info.slice("email", "first_name", "last_name")
     user_params[:facebook_picture_url] = auth.info.image
     user_params[:token] = auth.credentials.token
+    user_params[:friends_list] = auth.credentials.users_friends
     user_params[:token_expiry] = Time.at(auth.credentials.expires_at)
     user_params = user_params.to_h
 
